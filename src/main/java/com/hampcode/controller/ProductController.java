@@ -38,6 +38,7 @@ public class ProductController implements Serializable {
 
 	private String filterName;
 	private String filterDate;
+	private String filterCountry;
 
 	@PostConstruct
 	public void init() {
