@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<h:head  >
+
+</h:head>
+
+
+<body>
+
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+        
+        <p:panelGrid>
+        <p:outputLabel value="SOLICITUD DE COMPRA"  ></p:outputLabel>
+        </p:panelGrid>
+        
+         <p:panelGrid>
+        <p:outputLabel value="      " ></p:outputLabel>
+        </p:panelGrid>
+        
+        
+    
+        
+            
+							  
+							  
+		
+				 
+				 
+				 
+        			
+				<p:toolbar>
+					<f:facet name="left">
+					
+					
+					 <p:commandButton value="Listar" icon="ui-icon-disk"
+						     id="Listar"
+						action="#{productController.Mensaje()}"
+							  update="datTabProducts"/>
+							  
+							  
+						<p:commandButton value="Nuevo" icon="ui-icon-disk"
+						  action="#{productController.newProduct()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{productController.editProduct()}"
+						  ajax="false"/>
+						
+
+					</f:facet>
+				</p:toolbar>
+
+				<p:panelGrid id="panGriBuscador" columns="3" style="width:100%">
+					
+					<p:outputLabel value="Buscar por Nombre :" for="txtSearchName2" />
+					<p:inputText id="txtSearchName2"  value="#{productController.filterName}" />
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{productController.searchProductByName}"
+					/>
+		     	</p:panelGrid>
+				
+				
+			
+				<p:panelGrid id="panGriBuscador2" columns="3" style="width:100%" >
+		        	 <p:outputLabel for="button" value="Buscar por Fecha:" />
+                    <p:calendar id="button" value="#{productController.filterName}" showOn="button" />
+        
+        
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{productController.searchProductByName}"
+					 />
+		     	</p:panelGrid>
+				
+				
+				
+				  <p:dataTable id="datTabProducts"
+				
+				 	  ajax="false"	
+						emptyMessage="Registro de productos"
+						 var="product"
+					
+						rowKey="#{product.id}"
+						selectionMode="single"
+						selection="#{productController.productSelect}"
+						
+						paginator="false" rows="10">
+						
+					
+					<p:ajax event="rowSelect"
+						listener="#{productController.selectProduct}" />
+					
+				      	<p:column headerText="Id">
+						<p:outputLabel value="#{product.id}" />
+					</p:column>
+					<p:column headerText="Producto">
+						<p:outputLabel value="#{product.name}" />
+					</p:column>
+					<p:column headerText="Proveedor">
+						<p:outputLabel value="#{product.supplier.name}" />
+					</p:column>
+					<p:column headerText="Categoria">
+						<p:outputLabel value="#{product.category}" />
+					</p:column>
+					
+				 </p:dataTable>
+				 
+				 
+				 
+				 <p:toolbar>
+					<f:facet name="right">
+					
+	  
+						<p:commandButton value="Aprobar" icon="ui-icon-disk"
+						  action="#{productController.newProduct()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Rechazas" icon="ui-icon-disk"
+						  action="#{productController.editProduct()}"
+						  ajax="false"/>
+						
+
+					</f:facet>
+				</p:toolbar>
+				
+
+
+
+			</h:form>	
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
