@@ -17,6 +17,7 @@ public class ProductBusiness implements Serializable {
 	
 	@Inject
 	private ProductRepository productRepository;
+	private long id; 
 
 	@Transactional
 	public Long insert(Product product) throws Exception {
