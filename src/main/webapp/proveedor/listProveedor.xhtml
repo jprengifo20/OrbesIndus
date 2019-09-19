@@ -18,6 +18,20 @@
 			<h:form id="frm">
 				<p:growl id="men" />
         
+     			 <p:toolbar>
+					<f:facet name="left">			  
+						<p:commandButton value="Registrar" icon="ui-icon-disk"
+						  action="#{proveedorController.newProveedor()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Actualizar" icon="ui-icon-disk"
+						  action="#{proveedorController.editProveedor()}"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+        
+        
         <p:panelGrid>
         <p:outputLabel value="PROVEEDORES"  ></p:outputLabel>
         </p:panelGrid>
@@ -25,62 +39,37 @@
          <p:panelGrid>
         <p:outputLabel value="      " ></p:outputLabel>
         </p:panelGrid>
-        
-        		<p:toolbar>
-					<f:facet name="left">
-						 <p:commandButton value="Listar" icon="ui-icon-disk"
-						 	    id="Listar"
-								action="#{proveedorController.Mensaje()}"
-								update="datTabProveedores"/>
-						  
-						<p:commandButton value="Registrar" icon="ui-icon-disk"
-						  action="#{proveedorController.newProveedor()}"
-						  ajax="false"/>
-						
-						 <p:commandButton value="Actualizar" icon="ui-icon-disk"
-						  action="#{proveedorController.editProovedor()}"
-						  ajax="false"/>
 
-					</f:facet>
-				</p:toolbar>
-        	
 				<p:panelGrid id="panGriBuscador" columns="3" style="width:100%">
 					
 					<p:outputLabel value="Buscar por Empresa :" for="txtBEmpresa" />
 					<p:inputText id="txtBEmpresa"  value="#{proveedorController.filterEmpresa}" />
 					<p:commandButton icon="ui-icon-search" 
 					  actionListener="#{proveedorController.searchProveedorByEmpresa}"
-					/>
+					  update=":frm:datTabProveedores :frm:men"/>
 		     	</p:panelGrid>
-				
-	
+					
 				<p:panelGrid id="panGriBuscador2" columns="3" style="width:100%" >
-		        	 <p:outputLabel for="button" value="Buscar por ID:" />
-                    <p:calendar id="button" value="#{proveedorController.filterId}" showOn="button" />
-        
-        
+					<p:outputLabel value="Buscar Por Producto:" for="txtBProducto" />
+					<p:inputText id="txtBProducto"  value="#{proveedorController.filterProducto}" />
 					<p:commandButton icon="ui-icon-search" 
-					  actionListener="#{proveedorController.searchProveedorById}"
-					 />
+					  actionListener="#{proveedorController.searchProveedorByProducto}"
+					  update=":frm:datTabProveedores :frm:men"/>
 		     	</p:panelGrid>
-				
 	
 				  <p:dataTable id="datTabProveedores"
-				
-				 	  ajax="false"	
-						emptyMessage="Registro de proveedores"
-						 var="proveedor"
-					
+						emptyMessage="No existen proveedores registrados"
+						value="#{proveedorController.proveedores}" var="proveedor"
+						
 						rowKey="#{proveedor.id}"
 						selectionMode="single"
 						selection="#{proveedorController.proveedorSelect}"
 						
-						paginator="false" rows="10">
-						
-					
-					<p:ajax event="rowSelect"
+						paginator="true" rows="10">
+								
+						<p:ajax event="rowSelect"
 						listener="#{proveedorController.selectProveedor}" />
-					
+						
 				    <p:column headerText="Id">
 						<p:outputLabel value="#{proveedor.id}" />
 					</p:column>

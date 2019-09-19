@@ -41,6 +41,11 @@ public class ProveedorBusiness implements Serializable {
 		return proveedorRepository.findByEmpresa(empresa);
 	}
 	
+	public List<Proveedor> getProveedorByProducto (String producto) throws Exception
+	{
+		return proveedorRepository.findByProducto(producto);
+	}
+	
 	public List<Proveedor> getProveedorById (Long id) throws Exception
 	{
 		return proveedorRepository.findById(id);

@@ -32,6 +32,7 @@ public class ProveedorController implements Serializable{
 	
 	private String filterEmpresa;
 	private Long filterId;
+	private String filterProducto;
 	
 	@PostConstruct
 	public void init()
@@ -124,6 +125,20 @@ public class ProveedorController implements Serializable{
 		}
 	}
 	
+	public void searchProveedorByProducto()
+	{
+		try {
+			proveedores=proveedorBusiness.getProveedorByProducto(this.filterProducto.trim());
+			resetForm();
+			if(proveedores.isEmpty())
+			{
+				Message.messageInfo("El proveedor buscado no existe");
+			}
+		} catch (Exception e) {
+			Message.messageError("Error Buscar Proveedor: "+ e.getMessage());
+		}
+	}
+	
 	public void searchProovedorByID()
 	{
 		try {
@@ -149,7 +164,7 @@ public class ProveedorController implements Serializable{
 	}
 
 	public void resetForm2() {
-		this.filterId = null;
+		this.filterProducto = null;
 		this.proveedor = new Proveedor();
 	}
 
@@ -200,6 +215,14 @@ public class ProveedorController implements Serializable{
 	public void setFilterId(Long filterId) {
 		this.filterId = filterId;
 	}
+	
+	public String getFilterProducto() {
+		return filterProducto;
+	}
+
+	public void setFilterProducto(String filterProducto) {
+		this.filterProducto = filterProducto;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -213,7 +236,7 @@ public class ProveedorController implements Serializable{
 			
 		this.getAllProveedores();
 		resetForm();
-		view = "listProveedor2";
+		view = "listProveedor";
 		} catch (Exception e) {
 			Message.messageError("Error al cargar datos :" + e.getStackTrace());
 		}
