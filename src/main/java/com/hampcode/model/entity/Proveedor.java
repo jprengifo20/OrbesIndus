@@ -17,6 +17,8 @@ public class Proveedor {
 	private Long ruc;
 	private String producto;
 	private Long telefono;
+	private long gaaaaa;
+	
 	public Long getId() {
 		return id;
 	}
