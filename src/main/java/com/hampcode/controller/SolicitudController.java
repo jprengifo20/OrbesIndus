@@ -61,12 +61,12 @@ public class SolicitudController implements Serializable {
 			solicitudA = solicitudBusiness.getSolicitudByName(this.filterName.trim());
 			resetForm();
 			if (solicitudA.isEmpty()) {
-				Message.messageInfo("No se encontraron solicitudes");
+				Message.messageInfo("No se encontraron solicitudes en la base de datos");
 
 			}
 
 		} catch (Exception e) {
-			Message.messageError("Error Solicitud Search :" + e.getMessage());
+			Message.messageError("Error Solicitud al buscar :" + e.getMessage());
 		}
 	}
 	
