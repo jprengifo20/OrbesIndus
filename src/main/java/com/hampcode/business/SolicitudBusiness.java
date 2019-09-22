@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.hampcode.model.entity.Solicitud;
-import com.hampcode.model.repository.ProductRepository;
 import com.hampcode.model.repository.SolicitudRepository;
 
 @Named
@@ -19,8 +18,7 @@ public class SolicitudBusiness implements Serializable{
 	@Inject
 	private SolicitudRepository solicitudRepository;
 
-	private ProductRepository productRepository;
-	
+
 	public List<Solicitud> getAll() throws Exception {
 		return solicitudRepository.findAll();
 	}

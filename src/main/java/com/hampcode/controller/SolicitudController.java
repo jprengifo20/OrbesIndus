@@ -32,6 +32,7 @@ public class SolicitudController implements Serializable {
 
 
 	private String filterName;
+	private String filterDate;
 
 	@PostConstruct
 	public void init() {
@@ -70,6 +71,22 @@ public class SolicitudController implements Serializable {
 		}
 	}
 	
+	
+	public void searchSolicitudByDate() {
+		try {
+
+			solicitudA = solicitudBusiness.getSolicitudByName(this.filterName.trim());
+			resetForm();
+			if (solicitudA.isEmpty()) {
+				Message.messageInfo("No se encontraron solicitudes en la base de datos");
+
+			}
+
+		} catch (Exception e) {
+			Message.messageError("Error Solicitud al buscar :" + e.getMessage());
+		}
+	}
+	
  //Select y reset//
 	public void selectProduct(SelectEvent e) {
 		this.solicitudSelect = (Solicitud) e.getObject();
@@ -80,6 +97,10 @@ public class SolicitudController implements Serializable {
 		this.solicitud = new Solicitud();
 	}
 	
+	public void resetFormulario() {
+		this.filterDate = "";
+		this.solicitud = new Solicitud();
+	}
 	
 //Setters y Getters
 	public Solicitud getSolicitud() {
@@ -112,6 +133,15 @@ public class SolicitudController implements Serializable {
 
 	public void setFilterName(String filterName) {
 		this.filterName = filterName;
+	}
+	
+
+	public String getFilterDate() {
+		return filterDate;
+	}
+
+	public void setFilterDate(String filterDate) {
+		this.filterDate = filterDate;
 	}
 
 	public static long getSerialversionuid() {
