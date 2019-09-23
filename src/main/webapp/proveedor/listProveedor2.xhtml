@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<h:head  >
+
+</h:head>
+
+
+<body>
+
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+        
+        <p:panelGrid>
+        <p:outputLabel value="PROVEEDORES"  ></p:outputLabel>
+        </p:panelGrid>
+        
+         <p:panelGrid>
+        <p:outputLabel value="      " ></p:outputLabel>
+        </p:panelGrid>
+        
+        		<p:toolbar>
+					<f:facet name="left">
+						 <p:commandButton value="Listar" icon="ui-icon-disk"
+						 	    id="Listar"
+								action="listProveedor2"
+								ajax="false"
+								update="datTabProveedores"/>
+						  
+						<p:commandButton value="Registrar" icon="ui-icon-disk"
+						  action="#{proveedorController.newProveedor()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Actualizar" icon="ui-icon-disk"
+						  action="#{proveedorController.editProovedor()}"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+        	
+				<p:panelGrid id="panGriBuscador" columns="3" style="width:100%">
+					
+					<p:outputLabel value="Buscar por Empresa :" for="txtBEmpresa" />
+					<p:inputText id="txtBEmpresa"  value="#{proveedorController.filterEmpresa}" />
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{proveedorController.searchProveedorByEmpresa}"
+					/>
+		     	</p:panelGrid>
+				
+	
+				<p:panelGrid id="panGriBuscador2" columns="3" style="width:100%" >
+		        	 <p:outputLabel for="button" value="Buscar por ID:" />
+                    <p:calendar id="button" value="#{proveedorController.filterId}" showOn="button" />
+        
+        
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{proveedorController.searchProveedorById}"
+					 />
+		     	</p:panelGrid>
+				
+	
+				  <p:dataTable id="datTabProveedores"
+				
+				 	  ajax="false"	
+						emptyMessage="Registro de proveedores"
+						 var="proveedor"
+					
+						rowKey="#{proveedor.id}"
+						selectionMode="single"
+						selection="#{proveedorController.proveedorSelect}"
+						
+						paginator="false" rows="10">
+						
+					
+					<p:ajax event="rowSelect"
+						listener="#{proveedorController.selectProveedor}" />
+					
+				    <p:column headerText="Id">
+						<p:outputLabel value="#{proveedor.id}" />
+					</p:column>
+					<p:column headerText="Empresa">
+						<p:outputLabel value="#{proveedor.empresa}" />
+					</p:column>
+					<p:column headerText="RUC">
+						<p:outputLabel value="#{proveedor.ruc}" />
+					</p:column>
+					<p:column headerText="Producto">
+						<p:outputLabel value="#{proveedor.producto}" />
+					</p:column>
+					<p:column headerText="Teléfono">
+						<p:outputLabel value="#{proveedor.telefono}" />
+					</p:column>
+					
+				 </p:dataTable>
+				 
+			</h:form>	
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
