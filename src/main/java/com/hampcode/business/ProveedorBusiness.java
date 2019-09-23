@@ -31,6 +31,12 @@ public class ProveedorBusiness implements Serializable {
 		return proveedorRepository.update(proveedor);
 	}
 	
+	@Transactional
+	public void delete (Proveedor proveedor) throws Exception
+	{
+		proveedorRepository.delete(proveedor);
+	}
+	
 	public List<Proveedor> getAll() throws Exception 
 	{
 		return proveedorRepository.findAll();

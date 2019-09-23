@@ -28,6 +28,12 @@ public class ProveedorRepository implements Serializable {
 		em.merge(proveedor);
 		return proveedor.getId();
 	}
+	
+	public void delete (Proveedor proveedor) throws Exception
+	{
+		em.remove(proveedor);	
+	}
+	
 	public List<Proveedor> findAll() throws Exception
 	{
 		List<Proveedor> proveedores= new ArrayList<>();

@@ -17,6 +17,7 @@ import com.hampcode.model.entity.Product;
 import com.hampcode.model.entity.Proveedor;
 import com.hampcode.util.Message;
 
+
 @Named
 @SessionScoped
 public class ProveedorController implements Serializable{
@@ -27,6 +28,7 @@ public class ProveedorController implements Serializable{
 	private ProveedorBusiness proveedorBusiness;
 
 	private Proveedor proveedor;
+	private Proveedor proveedor2;
 	private List<Proveedor> proveedores;
 	private Proveedor proveedorSelect;
 	
@@ -38,6 +40,7 @@ public class ProveedorController implements Serializable{
 	public void init()
 	{
 		proveedor=new Proveedor();
+		proveedor2=new Proveedor();
 		proveedores=new ArrayList<Proveedor>();
 		
 		getAllProveedores();
@@ -72,25 +75,78 @@ public class ProveedorController implements Serializable{
 	
 	public String saveProveedor()
 	{
+		int numerocaracteresruc = 11;
+		int numerocaracterestel = 7;
 		String view="";
 		try {
-			if(proveedor.getId()!= null)
+			if(proveedor.getId()!= null)//actualizar
 			{
-				proveedorBusiness.update(proveedor);
-				Message.messageInfo("Se actualizó correctamente al proveedor");
-			}else
-			{
-				proveedorBusiness.insert(proveedor);
-				Message.messageInfo("Se registró correctamente el proveedor");
+				Long rucsito=proveedor.getRuc();
+				Long telefonito=proveedor.getTelefono();
+				if(rucsito.toString().length()!= numerocaracteresruc || telefonito.toString().length()!=numerocaracterestel)
+				{
+					Message.messageInfo("Debe llenar los campos correctamente");
+				}
+				else
+				{
+					if(this.proveedor.getEmpresa()==PEmpresa && this.proveedor.getRuc()==PRuc && this.proveedor.getProducto()==PProducto && this.proveedor.getTelefono()==PTelefono)
+					{
+						Message.messageInfo("Debe cambiar uno de los datos como minimo para poder actualizar");
+					}
+					else
+					{
+						proveedorBusiness.update(proveedor);
+						Message.messageInfo("Se actualizó correctamente al proveedor");	
+						this.getAllProveedores();
+						resetForm();
+						view="/proveedor/listProveedor";
+					}				
+				}
+			}else //registrar
+			{				
+				Long rucsito=proveedor.getRuc();
+				Long telefonito=proveedor.getTelefono();
+				if(rucsito.toString().length()!= numerocaracteresruc || telefonito.toString().length()!=numerocaracterestel)
+				{
+					Message.messageInfo("Debe llenar los campos correctamente");
+				}
+				else
+				{	
+						proveedorBusiness.insert(proveedor);
+						Message.messageInfo("Se registró correctamente el proveedor");
+						this.getAllProveedores();
+						resetForm();
+						view="/proveedor/listProveedor";
+				}
 			}
-			this.getAllProveedores();
-			resetForm();
-			view="/proveedor/listProveedor";
 		} catch (Exception e) {
 			Message.messageError("Error Proveedor :" + e.getStackTrace());
 		}
 		return view;
 	}
+	
+	public String borraProveedor()
+	{
+		String view=""; 
+		try 
+		{		
+			if(proveedor.getId()!=null)
+			{
+				proveedorBusiness.delete(proveedor);
+				Message.messageInfo("Se eliminó correctamente al proveedor");	
+				resetForm();
+				view="/proveedor/listProveedor";		
+			}				
+		}catch (Exception e) {
+			Message.messageError("Error Proveedor :" + e.getStackTrace());
+		}
+		return view;
+	}
+	
+	Long PTelefono;
+	Long PRuc;
+	String PEmpresa;
+	String PProducto;
 	
 	public String editProveedor()
 	{
@@ -98,11 +154,15 @@ public class ProveedorController implements Serializable{
 		try {
 			if(this.proveedorSelect!=null)
 			{
+				PTelefono=this.proveedorSelect.getTelefono();
+				PRuc=this.proveedorSelect.getRuc();
+				PEmpresa=this.proveedorSelect.getEmpresa();
+				PProducto=this.proveedorSelect.getProducto();
 				this.proveedor=proveedorSelect;
 				view = "/proveedor/updateProveedor";
 			}else
 			{
-				Message.messageInfo("Debe seleccionar un producto");
+				Message.messageInfo("Debe seleccionar un proveedor");
 			}
 		} catch (Exception e) {
 			Message.messageError("Error Proveedor: "+e.getMessage());
@@ -111,6 +171,25 @@ public class ProveedorController implements Serializable{
 		return view;
 	}
 	
+	public String deleteProveedor()
+	{
+		String view="";
+		try
+		{
+			if(this.proveedorSelect!=null)
+			{
+				this.proveedor=proveedorSelect;
+				view="/proveedor/deleteProveedor";
+			}
+			else
+			{
+				Message.messageInfo("Debe seleccionar el proveedor a eliminar");
+			}
+		}catch (Exception e) {
+			Message.messageError("Error Proveedor: "+e.getMessage());
+		}
+		return view;
+	}
 	public void searchProveedorByEmpresa()
 	{
 		try {
@@ -184,6 +263,14 @@ public class ProveedorController implements Serializable{
 		this.proveedor = proveedor;
 	}
 
+	public Proveedor getProveedor2() {
+		return proveedor2;
+	}
+
+	public void setProveedor2(Proveedor proveedor2) {
+		this.proveedor2 = proveedor2;
+	}
+
 	public List<Proveedor> getProveedores() {
 		return proveedores;
 	}
@@ -233,6 +320,22 @@ public class ProveedorController implements Serializable{
 		try {
 
 		Message.messageInfo("Se cargaron los datos correctamente");
+			
+		this.getAllProveedores();
+		resetForm();
+		view = "listProveedor";
+		} catch (Exception e) {
+			Message.messageError("Error al cargar datos :" + e.getStackTrace());
+		}
+
+		return view;
+	}
+	
+	public String MensajeError() {
+		String view = "";
+		try {
+
+		Message.messageInfo("Debe llenar los datos correctamente");
 			
 		this.getAllProveedores();
 		resetForm();
