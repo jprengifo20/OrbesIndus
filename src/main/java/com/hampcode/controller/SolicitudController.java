@@ -71,7 +71,7 @@ public class SolicitudController implements Serializable {
 		}
 	}
 	
-	
+	int numeroxya;
 	public void searchSolicitudByDate() {
 		try {
 
