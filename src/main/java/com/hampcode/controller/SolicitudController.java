@@ -71,8 +71,7 @@ public class SolicitudController implements Serializable {
 		}
 	}
 	
-	int numeroY;
-	public void searchSolicitudByDate() {
+	public void searchSolicitudByDatetime() {
 		try {
 
 			solicitudA = solicitudBusiness.getSolicitudByName(this.filterName.trim());
