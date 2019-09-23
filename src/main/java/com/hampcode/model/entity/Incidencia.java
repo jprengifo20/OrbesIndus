@@ -29,5 +29,35 @@ public class Incidencia {
 	@Column(name="observaciones",nullable=false)
 	private String observaciones;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+	public String getFechaLlegada() {
+		return fechaLlegada;
+	}
+	public void setFechaLlegada(String fechaLlegada) {
+		this.fechaLlegada = fechaLlegada;
+	}
+	public String getGravedad() {
+		return gravedad;
+	}
+	public void setGravedad(String gravedad) {
+		this.gravedad = gravedad;
+	}
+	public String getObservaciones() {
+		return observaciones;
+	}
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	} 
 	
 }
