@@ -62,7 +62,7 @@ public class ProveedorController implements Serializable{
 			this.proveedores=proveedorBusiness.getAll();
 			resetForm();
 		} catch (Exception e) {
-			// TODO: handle exception
+			Message.messageError("Error en la carga de Proveedores:"+e.getMessage());
 		}
 		
 		return "insertProveedor.xhtml";
