@@ -31,6 +31,12 @@ public class ProveedorBusiness implements Serializable {
 		return proveedorRepository.update(proveedor);
 	}
 	
+	@Transactional
+	public void delete (Proveedor proveedor) throws Exception
+	{
+		proveedorRepository.delete(proveedor);
+	}
+	
 	public List<Proveedor> getAll() throws Exception 
 	{
 		return proveedorRepository.findAll();
@@ -39,6 +45,11 @@ public class ProveedorBusiness implements Serializable {
 	public List<Proveedor> getProveedorByEmpresa (String empresa) throws Exception
 	{
 		return proveedorRepository.findByEmpresa(empresa);
+	}
+	
+	public List<Proveedor> getProveedorByProducto (String producto) throws Exception
+	{
+		return proveedorRepository.findByProducto(producto);
 	}
 	
 	public List<Proveedor> getProveedorById (Long id) throws Exception

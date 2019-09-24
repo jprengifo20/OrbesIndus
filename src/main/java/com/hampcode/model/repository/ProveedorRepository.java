@@ -1,6 +1,6 @@
 package com.hampcode.model.repository;
 
-import java.awt.List;
+import java.util.List;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -28,18 +28,24 @@ public class ProveedorRepository implements Serializable {
 		em.merge(proveedor);
 		return proveedor.getId();
 	}
-	public java.util.List<Proveedor> findAll() throws Exception
+	
+	public void delete (Proveedor proveedor) throws Exception
 	{
-		java.util.List<Proveedor> proveedores= new ArrayList<>();
+		em.remove(proveedor);	
+	}
+	
+	public List<Proveedor> findAll() throws Exception
+	{
+		List<Proveedor> proveedores= new ArrayList<>();
 		
-		TypedQuery<Proveedor> query = em.createQuery("SELECT s FROM Proveedor s", Proveedor.class);
+		TypedQuery<Proveedor> query = em.createQuery("FROM Proveedor p", Proveedor.class);
 		proveedores=query.getResultList();
 		return proveedores;
 	}
 	
-	public java.util.List<Proveedor> findByEmpresa (String empresa) throws Exception
+	public List<Proveedor> findByEmpresa (String empresa) throws Exception
 	{
-		java.util.List<Proveedor> proveedores=new ArrayList<>();
+		List<Proveedor> proveedores=new ArrayList<>();
 		
 		TypedQuery<Proveedor> query = em.createQuery("FROM Proveedor p WHERE p.empresa LIKE ?1", Proveedor.class);
 		query.setParameter(1, "%"+empresa+"%");
@@ -48,9 +54,20 @@ public class ProveedorRepository implements Serializable {
 		return proveedores;
 	}
 	
-	public java.util.List<Proveedor> findById(Long id) throws Exception
+	public List<Proveedor> findByProducto (String producto) throws Exception
 	{
-		java.util.List<Proveedor> proveedores = new ArrayList<>();
+		List<Proveedor> proveedores=new ArrayList<>();
+		
+		TypedQuery<Proveedor> query = em.createQuery("FROM Proveedor p WHERE p.producto LIKE ?1", Proveedor.class);
+		query.setParameter(1, "%"+producto+"%");
+		proveedores=query.getResultList();
+		
+		return proveedores;
+	}
+	
+	public List<Proveedor> findById(Long id) throws Exception
+	{
+		List<Proveedor> proveedores = new ArrayList<>();
 		
 		TypedQuery<Proveedor> query = em.createQuery("FROM Proveedor p WHERE p.id LIKE ?1",Proveedor.class);
 		query.setParameter(1,"%"+id+"%");

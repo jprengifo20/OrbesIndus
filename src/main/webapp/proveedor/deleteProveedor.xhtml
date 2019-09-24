@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<body>
+
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+               
+				<p:panelGrid id="panGridProveedores" columns="2" style="width:100%">
+					<p:outputLabel value="Empresa"/>
+					<p:outputLabel value="#{proveedorController.proveedor.empresa}"/>
+
+					<p:outputLabel value="RUC"/>
+					<p:outputLabel value="#{proveedorController.proveedor.ruc}"/>
+					
+					<p:outputLabel value="Producto"/>
+					<p:outputLabel value="#{proveedorController.proveedor.producto}"/>
+
+					<p:outputLabel value="Telefono"/>
+					<p:outputLabel value="#{proveedorController.proveedor.telefono}"/>
+					
+					<p:outputLabel value="" />
+					<p:outputLabel value="" />
+					
+
+				</p:panelGrid>
+				<br></br>
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Eliminar" icon="ui-icon-disk" 
+						action="#{proveedorController.borraProveedor()}" ajax="false"/>
+
+						<p:commandButton value="Cancelar" icon="ui-icon-disk"
+						  action="#{proveedorController.listProveedor()}"
+						  immediate="true"
+						  ajax="false"/>
+					</f:facet>
+				</p:toolbar>
+
+			</h:form>
+	
+			
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
