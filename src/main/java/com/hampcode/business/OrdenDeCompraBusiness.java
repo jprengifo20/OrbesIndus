@@ -17,7 +17,7 @@ private static final long serialVersionUID = 1L;
 	
 	@Inject
 	private OrdenDeCompraRepository OrdenDeCompraRepository;
-	
+	private String noseguardoloanterior;
 	
 	@Transactional
 	public Long insert (OrdenDeCompra orden)throws Exception
