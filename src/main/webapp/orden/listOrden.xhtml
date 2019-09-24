@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<h:head  >
+
+</h:head>
+
+
+<body>
+
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+        
+        <p:panelGrid>
+        <p:outputLabel value="ORDEN DE COMPRA"  ></p:outputLabel>
+        </p:panelGrid>
+        
+         <p:panelGrid>
+        <p:outputLabel value="      " ></p:outputLabel>
+        </p:panelGrid>
+        
+        
+    
+        
+            
+							  
+							  
+		
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+        			
+				<p:toolbar>
+					<f:facet name="left">
+					
+					
+					 <p:commandButton value="Listar" icon="ui-icon-disk"
+						     id="Listar"
+						action="#{OrdenDeCompraController.Mensaje()}"
+							  update="datTabOrden"/>
+							  
+							  
+						<p:commandButton value="Nuevo" icon="ui-icon-disk"
+						  action="#{OrdenDeCompraController.newOrden()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{OrdenDeCompraController.editOrden()}"
+						  ajax="false"/>
+						
+
+					</f:facet>
+				</p:toolbar>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				  <p:dataTable id="datTabOrden"
+				
+				 	  ajax="false"	
+						emptyMessage="Registro de orden de compra"
+						 var="orden"
+					
+						rowKey="#{orden.id}"
+						selectionMode="single"
+						selection="#{OrdenDeCompraController.ordenSelect}"
+						
+						paginator="false" rows="10">
+						
+					
+					<p:ajax event="rowSelect"
+						listener="#{OrdenDeCompraController.selectOrden}" />
+					
+				      	<p:column headerText="Id">
+						<p:outputLabel value="#{orden.id}" />
+					</p:column>
+					<p:column headerText="Proveedor">
+						<p:outputLabel value="#{orden.proveedor}" />
+					</p:column>
+					<p:column headerText="Fecha">
+						<p:outputLabel value="#{orden.fecha}" />
+					</p:column>
+					<p:column headerText="Responsable">
+						<p:outputLabel value="#{orden.responsable}" />
+					</p:column>
+					<p:column headerText="Detalle">
+						<p:outputLabel value="#{orden.detalle}" />
+					</p:column>
+					
+					
+					
+					
+					
+					
+					
+					
+				 </p:dataTable>
+				 
+				 
+				 
+				 <p:toolbar>
+					<f:facet name="right">
+					
+	  
+					
+						
+
+					</f:facet>
+				</p:toolbar>
+				
+
+
+
+			</h:form>	
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
