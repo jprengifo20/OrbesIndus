@@ -14,10 +14,14 @@ import com.hampcode.model.repository.ProductRepository;
 public class ProductBusiness implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+	int hola;
 	@Inject
 	private ProductRepository productRepository;
 	private long id; 
+	
+	private int numero;
+	
+	
 
 	@Transactional
 	public Long insert(Product product) throws Exception {

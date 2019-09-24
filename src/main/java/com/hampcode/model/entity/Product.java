@@ -23,6 +23,9 @@ public class Product {
 	private Supplier supplier;
 
 	private Long category;
+	
+	private long orden;
+	private int variablepruebla;
 
 	@Column(name = "unit_price", nullable = false)
 	private double unitPrice;
@@ -78,5 +81,6 @@ public class Product {
 	public void setUnitsInStock(int unitsInStock) {
 		this.unitsInStock = unitsInStock;
 	}
-
+	
+	
 }

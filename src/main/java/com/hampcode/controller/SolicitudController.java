@@ -32,6 +32,7 @@ public class SolicitudController implements Serializable {
 
 
 	private String filterName;
+	private String filterDate;
 
 	@PostConstruct
 	public void init() {
@@ -61,12 +62,27 @@ public class SolicitudController implements Serializable {
 			solicitudA = solicitudBusiness.getSolicitudByName(this.filterName.trim());
 			resetForm();
 			if (solicitudA.isEmpty()) {
-				Message.messageInfo("No se encontraron solicitudes");
+				Message.messageInfo("No se encontraron solicitudes en la base de datos");
 
 			}
 
 		} catch (Exception e) {
-			Message.messageError("Error Solicitud Search :" + e.getMessage());
+			Message.messageError("Error Solicitud al buscar :" + e.getMessage());
+		}
+	}
+	
+	public void searchSolicitudByDatetime() {
+		try {
+
+			solicitudA = solicitudBusiness.getSolicitudByName(this.filterName.trim());
+			resetForm();
+			if (solicitudA.isEmpty()) {
+				Message.messageInfo("No se encontraron solicitudes en la base de datos");
+
+			}
+
+		} catch (Exception e) {
+			Message.messageError("Error Solicitud al buscar :" + e.getMessage());
 		}
 	}
 	
@@ -80,6 +96,10 @@ public class SolicitudController implements Serializable {
 		this.solicitud = new Solicitud();
 	}
 	
+	public void resetFormulario() {
+		this.filterDate = "";
+		this.solicitud = new Solicitud();
+	}
 	
 //Setters y Getters
 	public Solicitud getSolicitud() {
@@ -112,6 +132,15 @@ public class SolicitudController implements Serializable {
 
 	public void setFilterName(String filterName) {
 		this.filterName = filterName;
+	}
+	
+
+	public String getFilterDate() {
+		return filterDate;
+	}
+
+	public void setFilterDate(String filterDate) {
+		this.filterDate = filterDate;
 	}
 
 	public static long getSerialversionuid() {

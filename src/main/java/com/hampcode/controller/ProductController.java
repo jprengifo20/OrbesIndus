@@ -22,7 +22,7 @@ import com.hampcode.util.Message;
 public class ProductController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+String categoria;;
 	@Inject
 	private ProductBusiness productBusiness;
 
