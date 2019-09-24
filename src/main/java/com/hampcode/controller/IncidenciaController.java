@@ -29,6 +29,46 @@ public class IncidenciaController implements Serializable {
 	private ProveedorBusiness proveedorBusiness; 
 	
 	private Incidencia incidencia;
+	public Incidencia getIncidencia() {
+		return incidencia;
+	}
+
+	public void setIncidencia(Incidencia incidencia) {
+		this.incidencia = incidencia;
+	}
+
+	public List<Incidencia> getIncidencias() {
+		return incidencias;
+	}
+
+	public void setIncidencias(List<Incidencia> incidencias) {
+		this.incidencias = incidencias;
+	}
+
+	public Incidencia getIncidenciaSeleccionada() {
+		return incidenciaSeleccionada;
+	}
+
+	public void setIncidenciaSeleccionada(Incidencia incidenciaSeleccionada) {
+		this.incidenciaSeleccionada = incidenciaSeleccionada;
+	}
+
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public List<Proveedor> getProveedores() {
+		return proveedores;
+	}
+
+	public void setProveedores(List<Proveedor> proveedores) {
+		this.proveedores = proveedores;
+	}
+
 	private List<Incidencia> incidencias; 
 	private Incidencia incidenciaSeleccionada; 
 	
