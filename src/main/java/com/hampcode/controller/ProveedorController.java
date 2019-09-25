@@ -1,5 +1,6 @@
 package com.hampcode.controller;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +9,10 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.auth.message.MessageInfo;
 
 import org.primefaces.event.SelectEvent;
 
 import com.hampcode.business.ProveedorBusiness;
-import com.hampcode.model.entity.Product;
 import com.hampcode.model.entity.Proveedor;
 import com.hampcode.util.Message;
 
@@ -33,7 +32,7 @@ public class ProveedorController implements Serializable{
 	private Proveedor proveedorSelect;
 	
 	private String filterEmpresa;
-	private Long filterId;
+	private Long filterRuc;
 	private String filterProducto;
 	
 	@PostConstruct
@@ -134,6 +133,7 @@ public class ProveedorController implements Serializable{
 			{
 				proveedorBusiness.delete(proveedor);
 				Message.messageInfo("Se eliminó correctamente al proveedor");	
+				this.getAllProveedores();
 				resetForm();
 				view="/proveedor/listProveedor";		
 			}				
@@ -218,10 +218,10 @@ public class ProveedorController implements Serializable{
 		}
 	}
 	
-	public void searchProovedorByID()
+	public void searchProovedorByRuc()
 	{
 		try {
-			proveedores=proveedorBusiness.getProveedorById(this.filterId);
+			proveedores=proveedorBusiness.getProveedorByRuc(this.filterRuc);
 			resetForm();
 			if(proveedores.isEmpty())
 			{
@@ -245,6 +245,14 @@ public class ProveedorController implements Serializable{
 	public void resetForm2() {
 		this.filterProducto = null;
 		this.proveedor = new Proveedor();
+	}
+	
+	public Long getFilterRuc() {
+		return filterRuc;
+	}
+
+	public void setFilterRuc(Long filterRuc) {
+		this.filterRuc = filterRuc;
 	}
 
 	public ProveedorBusiness getProveedorBusiness() {
@@ -293,14 +301,6 @@ public class ProveedorController implements Serializable{
 
 	public void setFilterEmpresa(String filterEmpresa) {
 		this.filterEmpresa = filterEmpresa;
-	}
-
-	public Long getFilterId() {
-		return filterId;
-	}
-
-	public void setFilterId(Long filterId) {
-		this.filterId = filterId;
 	}
 	
 	public String getFilterProducto() {

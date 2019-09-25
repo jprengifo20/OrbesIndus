@@ -13,6 +13,28 @@
 		<ui:define name="content">
 			<h:form id="frm">
 				<p:growl id="men" />
+               				
+               				
+               	<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Eliminar" icon="ui-icon-disk" 
+						action="#{proveedorController.borraProveedor()}" ajax="false"/>
+
+						<p:commandButton value="Cancelar" icon="ui-icon-disk"
+						  action="#{proveedorController.listProveedor()}"
+						  immediate="true"
+						  ajax="false"/>
+					</f:facet>
+				</p:toolbar>
+				
+				
+               	<p:panelGrid>
+        		<p:outputLabel value="ELIMINAR PROVEEDORES"  ></p:outputLabel>
+        		</p:panelGrid>
+        
+         		<p:panelGrid>
+        		<p:outputLabel value="      " ></p:outputLabel>
+        		</p:panelGrid>
                
 				<p:panelGrid id="panGridProveedores" columns="2" style="width:100%">
 					<p:outputLabel value="Empresa"/>
@@ -27,24 +49,18 @@
 					<p:outputLabel value="Telefono"/>
 					<p:outputLabel value="#{proveedorController.proveedor.telefono}"/>
 					
+					<p:outputLabel value="Ingrese detalle de elimicación:" for="txtDetalle" />
+					<p:inputTextarea id="txtDetalle" required="true" maxlength="500"
+						value="#{proveedorController.proveedor.detalleEliminacion}" />
+			
 					<p:outputLabel value="" />
 					<p:outputLabel value="" />
 					
-
+				
 				</p:panelGrid>
 				<br></br>
 
-				<p:toolbar>
-					<f:facet name="right">
-						<p:commandButton value="Eliminar" icon="ui-icon-disk" 
-						action="#{proveedorController.borraProveedor()}" ajax="false"/>
 
-						<p:commandButton value="Cancelar" icon="ui-icon-disk"
-						  action="#{proveedorController.listProveedor()}"
-						  immediate="true"
-						  ajax="false"/>
-					</f:facet>
-				</p:toolbar>
 
 			</h:form>
 	

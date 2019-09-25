@@ -44,22 +44,6 @@
         <p:outputLabel value="      " ></p:outputLabel>
         </p:panelGrid>
 
-				<p:panelGrid id="panGriBuscador" columns="3" style="width:100%">
-					
-					<p:outputLabel value="Buscar por Empresa :" for="txtBEmpresa" />
-					<p:inputText id="txtBEmpresa"  value="#{proveedorController.filterEmpresa}" />
-					<p:commandButton icon="ui-icon-search" 
-					  actionListener="#{proveedorController.searchProveedorByEmpresa}"
-					  update=":frm:datTabProveedores :frm:men"/>
-		     	</p:panelGrid>
-					
-				<p:panelGrid id="panGriBuscador2" columns="3" style="width:100%" >
-					<p:outputLabel value="Buscar Por Producto:" for="txtBProducto" />
-					<p:inputText id="txtBProducto"  value="#{proveedorController.filterProducto}" />
-					<p:commandButton icon="ui-icon-search" 
-					  actionListener="#{proveedorController.searchProveedorByProducto}"
-					  update=":frm:datTabProveedores :frm:men"/>
-		     	</p:panelGrid>
 	
 				  <p:dataTable id="datTabProveedores"
 						emptyMessage="No existen proveedores registrados"

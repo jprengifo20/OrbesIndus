@@ -17,6 +17,7 @@ public class Proveedor {
 	private Long ruc;
 	private String producto;
 	private Long telefono;
+	private String detalleEliminacion;
 	
 	public Long getId() {
 		return id;
@@ -47,6 +48,12 @@ public class Proveedor {
 	}
 	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
+	}
+	public String getDetalleEliminacion() {
+		return detalleEliminacion;
+	}
+	public void setDetalleEliminacion(String detalleEliminacion) {
+		this.detalleEliminacion = detalleEliminacion;
 	}
 	
 }

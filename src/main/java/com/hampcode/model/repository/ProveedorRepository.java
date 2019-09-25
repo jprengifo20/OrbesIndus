@@ -1,14 +1,16 @@
 package com.hampcode.model.repository;
 
-import java.util.List;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.hampcode.model.entity.Proveedor;
+
 
 public class ProveedorRepository implements Serializable {
 
@@ -29,9 +31,13 @@ public class ProveedorRepository implements Serializable {
 		return proveedor.getId();
 	}
 	
-	public void delete (Proveedor proveedor) throws Exception
+	public void delete (Long id) throws Exception
 	{
-		em.remove(proveedor);	
+		Proveedor proveedor=em.find(Proveedor.class, id);
+		if(proveedor!=null)
+		{
+			em.remove(proveedor);
+		}
 	}
 	
 	public List<Proveedor> findAll() throws Exception
@@ -65,12 +71,12 @@ public class ProveedorRepository implements Serializable {
 		return proveedores;
 	}
 	
-	public List<Proveedor> findById(Long id) throws Exception
+	public List<Proveedor> findByRUC(Long ruc) throws Exception
 	{
 		List<Proveedor> proveedores = new ArrayList<>();
 		
-		TypedQuery<Proveedor> query = em.createQuery("FROM Proveedor p WHERE p.id LIKE ?1",Proveedor.class);
-		query.setParameter(1,"%"+id+"%");
+		TypedQuery<Proveedor> query = em.createQuery("FROM Proveedor p WHERE p.ruc LIKE ?1",Proveedor.class);
+		query.setParameter(1,ruc+"%");
 		proveedores=query.getResultList();
 		
 		return proveedores;
