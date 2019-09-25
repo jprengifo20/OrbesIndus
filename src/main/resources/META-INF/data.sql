@@ -9,3 +9,4 @@ INSERT INTO products (name,supplier_id,category,unit_price,units_in_stock) VALUE
 INSERT INTO products (name,supplier_id,category,unit_price,units_in_stock) VALUES ('Mangueras', 2, 2, 05.08, 20);
 INSERT INTO products (name,supplier_id,category,unit_price,units_in_stock) VALUES ('Fajas', 3, 1, 01.09, 30);
 
+INSERT INTO orden (proveedor,fecha,responsable,producto,detalle) VALUES ('asda','12-07-1995','marcos piña', 'anis', 'gg');

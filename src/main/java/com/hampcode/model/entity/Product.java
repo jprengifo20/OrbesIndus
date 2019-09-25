@@ -25,6 +25,7 @@ public class Product {
 	private Long category;
 	
 	private long orden;
+	
 	private int variablepruebla;
 
 	@Column(name = "unit_price", nullable = false)

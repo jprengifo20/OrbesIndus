@@ -1,6 +1,6 @@
 package com.hampcode.business;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 
 import javax.inject.Named;
 
